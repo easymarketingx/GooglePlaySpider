@@ -22,11 +22,22 @@ class Package
     {
         return $this->crawler->filter("h1[class=AHFaub]")->text();
     }
+    
+    public function getReleaseDate()
+    {
+        return $this->crawler->filter('div[class="IQ1z0d"]')->filter('span[class="htlgb"]')->text();
+    }
 
     public function getFeaturedImageAddress()
     {
         return $this->crawler->filter("div[class=dQrBL] > img")->attr("src");
     }
+    
+    public function getIconImageAddress()
+    {
+        return $this->crawler->filter("div[class=xSyT2c] > img")->attr("src");
+    }
+
 
     public function getDeveloper()
     {
@@ -66,7 +77,7 @@ class Package
     public function getScreenshots()
     {
 
-        $main_tag = $this->crawler->filter('div[class="FaSaxe Eg31qe"]')->filter("img");
+        $main_tag = $this->crawler->filter('button[class="Q4vdJd"]')->filter("img");
 
         $scs = $main_tag->each(function (Crawler $node, $i) {
             if ($node->nodeName() == "img") {
@@ -131,3 +142,4 @@ class Package
     }
 
 }
+
